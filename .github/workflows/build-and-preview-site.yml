@@ -4,8 +4,9 @@ on:
     branches: [ master ]
     types: [opened, synchronize, reopened]
     paths:
+    - '!**'
     - 'site/**'
-    - 'site/hugo.toml'
+    - 'hugo.toml'
     - 'Makefile'
 jobs:
   trigger-site-preview:
@@ -24,10 +25,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Install npm deps (PostCSS)
+      - name: Install PostCSS (required by Docsy)
         run: |
-          cd site
-          npm install
+          npm install -g postcss postcss-cli autoprefixer
       - name: Build site 🔧
         run: make site-build
       - name: Zip site output
