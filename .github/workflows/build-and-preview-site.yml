@@ -4,9 +4,8 @@ on:
     branches: [ master ]
     types: [opened, synchronize, reopened]
     paths:
-    - '!**'
     - 'site/**'
-    - 'hugo.toml'
+    - 'site/hugo.toml'
     - 'Makefile'
 jobs:
   trigger-site-preview:
@@ -21,6 +20,14 @@ jobs:
         with:
           hugo-version: '0.154.5'
           extended: true
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install npm deps (PostCSS)
+        run: |
+          cd site
+          npm ci
       - name: Build site 🔧
         run: make site-build
       - name: Zip site output
