@@ -1,5 +1,4 @@
 # Kanvas Site
-
 This repository contains the website for **Kanvas** (Meshery extension).
 
 ## Local Development
