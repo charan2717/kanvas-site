@@ -1,0 +1,50 @@
+.partners-section {
+    padding: $td-block-space-top-base 0;
+    text-align: center;
+    background-color: $color-surface;
+    overflow: hidden;
+
+    .partners-title {
+        color: $color-muted;
+        font-family: $font-qanelas;
+        font-size: $font-size-sm;
+        margin-bottom: $space-8;
+        text-transform: uppercase; 
+    }
+
+    .marquee-viewport {
+        overflow: hidden;
+        width: 100%;
+        mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    }
+
+    .partners-logos {
+        display: flex;
+        align-items: center;
+        gap: $space-8;
+        width: max-content; 
+
+        img {
+            height: 35px;
+            width: auto;
+            filter: brightness(0) invert(1); 
+            opacity: 0.8; 
+            transition: $transition;
+
+            &:hover {
+                filter: none; 
+                opacity: 1;   
+            }
+        }
+
+        img.citixLogo {
+            filter: invert(0.8); 
+            opacity: 0.8; 
+
+            &:hover {
+                filter: invert(0);
+                opacity: 1;
+            }
+        }
+    }
+}

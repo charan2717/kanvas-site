@@ -1,27 +1,16 @@
-// 1. Setup the GSAP Timeline
+// Register Plugin
+gsap.registerPlugin(ScrollTrigger);
+
+// 1. Header Timeline
 let tl = gsap.timeline({
     defaults: { ease: "power4.out" }
 });
 
-// Header animation
 tl.from(".main-nav ul li a", { opacity: 0, y: -50, duration: 1, stagger: 0.2 });
 tl.from(".btn-secondary", { x: 100, opacity: 0, rotation: 360, duration: 0.8 }, "-=0.5");
 tl.from(".btn-primary", { x: 100, opacity: 0, duration: 0.8 }, "<");
 
-gsap.registerPlugin(ScrollTrigger);
-
-// gsap.from(".mode-card", {
-//   scrollTrigger: {
-//     trigger: ".modes-grid",
-//     start: "top 80%", // Starts when the grid is 80% down the screen
-//   },
-//   y: 100,
-//   opacity: 0,
-//   duration: 1,
-//   stagger: 0.2,
-//   ease: "power4.out"
-// });
-
+// 2. Optimized Counter Animation
 const animateCounters = () => {
     const counters = document.querySelectorAll('.counter');
     const speed = 2000; 
@@ -33,11 +22,10 @@ const animateCounters = () => {
         const updateCount = (timestamp) => {
             if (!startTime) startTime = timestamp;
             const progress = timestamp - startTime;
-            
             const percentage = Math.min(progress / speed, 1);
             const currentValue = Math.floor(percentage * target);
 
-            // Logic to match your 380+, 1000+, 10M+ requirements
+            // Formatting logic
             if (target === 10) {
                 counter.innerText = currentValue + "M+";
             } else {
@@ -47,7 +35,6 @@ const animateCounters = () => {
             if (progress < speed) {
                 requestAnimationFrame(updateCount);
             } else {
-                // Ensure it ends on the exact target
                 counter.innerText = target + (target === 10 ? "M+" : "+");
             }
         };
@@ -55,13 +42,30 @@ const animateCounters = () => {
     });
 };
 
-document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") {
-        tl.restart(); 
-        animateCounters(); 
-    }
-});
+// 3. Partners Marquee 
+const initMarquee = () => {
+    const marquee = document.getElementById('partnersMarquee');
+    if (!marquee) return; 
+    marquee.innerHTML += marquee.innerHTML;
+    const animation = gsap.to(marquee, {
+        x: "0", 
+        startAt: { x: "-50%" },
+        duration: 30, 
+        ease: "none",
+        repeat: -1,
+    });
+
+    marquee.addEventListener('mouseenter', () => animation.pause());
+    marquee.addEventListener('mouseleave', () => animation.play());
+};
 
 document.addEventListener("DOMContentLoaded", () => {
     animateCounters();
+    initMarquee(); 
+});
+
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+        tl.restart(); 
+    }
 });
