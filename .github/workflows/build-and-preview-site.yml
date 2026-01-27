@@ -34,6 +34,13 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Checkout for cleanup
+        if: github.event.action == 'closed'
+        uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+
       - name: Setup Hugo
         if: github.event.action != 'closed'
         uses: peaceiris/actions-hugo@v3
