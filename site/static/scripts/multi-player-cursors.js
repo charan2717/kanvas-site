@@ -26,7 +26,6 @@
     if (!container) return;
 
     const cursors = [];
-    const intervals = [];
     
     cursorIndices.forEach((index, i) => {
       if (index >= CURSORS.length) return;
@@ -62,8 +61,6 @@
         }, i * ANIMATION_DURATION);
       });
     }, ANIMATION_INTERVAL);
-    
-    intervals.push(intervalId);
   }
 
   /**
@@ -72,18 +69,10 @@
   function createCursorElement(cursorData) {
     const wrapper = document.createElement('div');
     wrapper.className = 'multi-cursor';
-    wrapper.style.position = 'absolute';
-    wrapper.style.pointerEvents = 'none';
-    wrapper.style.zIndex = '10';
-    wrapper.style.width = CURSOR_SIZE + 'px';
-    wrapper.style.height = CURSOR_SIZE + 'px';
     
     const img = document.createElement('img');
     img.src = cursorData.src;
     img.alt = cursorData.name;
-    img.style.width = '100%';
-    img.style.height = 'auto';
-    img.style.display = 'block';
     
     wrapper.appendChild(img);
     
