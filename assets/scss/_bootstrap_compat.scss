@@ -30,3 +30,35 @@ $body-color: #fff !default;
     @content;
   }
 }
+
+// Minimal placeholders for Docsy-specific extends used in content styles.
+.td-max-width-on-larger-screens {
+  max-width: 100%;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.img-thumbnail {
+  padding: 0.25rem;
+  background-color: transparent;
+  border: 1px solid $gray-300;
+  border-radius: $border-radius;
+}
+
+.rounded {
+  border-radius: $border-radius;
+}
+
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgba($black, 0.15);
+}
+
+.td-table {
+  width: 100%;
+  margin-bottom: $spacer;
+  color: $body-color;
+  border-collapse: collapse;
+}
