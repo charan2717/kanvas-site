@@ -1,4 +1,4 @@
-// Minimal bootstrap-compatible variables/mixins for project SCSS.
+// Base variables and mixins for project SCSS.
 $white: #fff !default;
 $black: #000 !default;
 $gray-100: #f8f9fa !default;
@@ -31,8 +31,8 @@ $body-color: #fff !default;
   }
 }
 
-// Minimal placeholders for Docsy-specific extends used in content styles.
-.td-max-width-on-larger-screens {
+// Utility classes for content styles.
+.content-max-width {
   max-width: 100%;
 }
 
@@ -56,7 +56,7 @@ $body-color: #fff !default;
   box-shadow: 0 0.5rem 1rem rgba($black, 0.15);
 }
 
-.td-table {
+.content-table {
   width: 100%;
   margin-bottom: $spacer;
   color: $body-color;
