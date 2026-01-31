@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const heroContent = document.querySelector(".hero-content");
   const line = document.querySelector(".hover-line");
   const wrapperHeight = 46; 
-  const lineHeight = 5;  
+  const lineHeight = 5;
+  const imageWrapper = document.querySelector(".header-image-wrapper");
+  
 
   function lerp(start, end, progress) {
     return start + (end - start) * progress;
@@ -65,24 +67,46 @@ document.addEventListener("DOMContentLoaded", function () {
     // -------------------------
     // HERO CONTENT DISAPPEAR
     // -------------------------
-    if (progress >= 0 && progress <= 0.4) {
+    const fadeStart = 0;
+    const fadeEnd = 0.4;
 
-      const p = (progress - 0) / 0.4;
+    let p = (progress - fadeStart) / (fadeEnd - fadeStart);
+    p = Math.max(0, Math.min(1, p));
 
-      const moveX = lerp(0, -50, p);
-      const moveY = lerp(0, -50, p);
-      const scale = lerp(1, 0.2, p);
-      const rotate = lerp(0, -32, p);
-      const opacity = lerp(1, 0, p);
+    const moveX = lerp(0, -50, p);
+    const moveY = lerp(0, -50, p);
+    const scale = lerp(1, 0.2, p);
+    const rotate = lerp(0, -32, p);
+    const opacity = lerp(1, 0, p);
 
-      heroContent.style.opacity = opacity;
-      heroContent.style.transform = `
-        translate3d(${moveX}px, ${moveY}px, 0)
-        scale3d(${scale}, ${scale}, 1)
-        rotateZ(${rotate}deg)
-      `;
-    }
+    heroContent.style.opacity = opacity;
+    heroContent.style.transform = `
+      translate3d(${moveX}px, ${moveY}px, 0)
+      scale3d(${scale}, ${scale}, 1)
+      rotateZ(${rotate}deg)
+    `;
 
+
+  // -------------------------
+  // CUBE REVEAL
+  // -------------------------
+  const revealStart = 0.6;
+  const revealEnd = 0.9;
+
+  let cubeProgress = (progress - revealStart) / (revealEnd - revealStart);
+  cubeProgress = Math.max(0, Math.min(1, cubeProgress));
+
+  const cubeX = lerp(-63.4735, -9, cubeProgress);
+  const cubeY = lerp(-36.519, 27, cubeProgress);
+  const cubeScale = lerp(0.48695, 1, cubeProgress);
+  const cubeOpacity = lerp(0, 1, cubeProgress);
+
+  imageWrapper.style.opacity = cubeOpacity;
+  imageWrapper.style.transform = `
+    translate3d(${cubeX}px, ${cubeY}px, 0)
+    scale3d(${cubeScale}, ${cubeScale}, 1)
+    rotateZ(0deg)
+  `;
   }
 
   // -------------------------
@@ -103,6 +127,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   animate();
-
+  
   window.addEventListener("scroll", handleScroll);
 });
