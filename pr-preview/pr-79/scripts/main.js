@@ -77,3 +77,48 @@ document.addEventListener("visibilitychange", () => {
         tl.restart(); 
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const stats = [
+    { number: "380+", label: "Integration" },
+    { number: "1000+", label: "Contributors" },
+    { number: "10M+", label: "Downloads" }
+  ];
+
+  const numberEl = document.getElementById("statNumber");
+  const labelEl = document.getElementById("statLabel");
+
+  let current = 0;
+
+  function changeStat() {
+
+    // animate out
+    numberEl.classList.add("stat-animate-out");
+    labelEl.classList.add("stat-animate-out");
+
+    setTimeout(() => {
+
+      // change content
+      current = (current + 1) % stats.length;
+      numberEl.textContent = stats[current].number;
+      labelEl.textContent = stats[current].label;
+
+      // remove old animation
+      numberEl.classList.remove("stat-animate-out");
+      labelEl.classList.remove("stat-animate-out");
+
+      // animate in
+      numberEl.classList.add("stat-animate-in");
+      labelEl.classList.add("stat-animate-in");
+
+      setTimeout(() => {
+        numberEl.classList.remove("stat-animate-in");
+        labelEl.classList.remove("stat-animate-in");
+      }, 600);
+
+    }, 400);
+  }
+
+  setInterval(changeStat, 3000);
+
+});

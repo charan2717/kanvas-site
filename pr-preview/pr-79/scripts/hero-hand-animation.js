@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // CUBE REVEAL
   // -------------------------
   const revealStart = 0.6;
-  const revealEnd = 0.9;
+  const revealEnd = 0.88;
 
   let cubeProgress = (progress - revealStart) / (revealEnd - revealStart);
   cubeProgress = Math.max(0, Math.min(1, cubeProgress));
