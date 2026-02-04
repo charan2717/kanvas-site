@@ -1,6 +1,6 @@
 // Custom Dashboard Component Styles
 
-.dashboard-section {
+.collaboration-section {
     padding: 100px 0;
     position: relative;
     overflow: hidden;
@@ -18,7 +18,7 @@
         }
     }
 
-    .dashboard-content {
+    .collaboration-content {
         .icon-box {
             width: 48px;
             height: 48px;
@@ -87,7 +87,7 @@
         }
     }
 
-    .dashboard-visual {
+    .collaboration-visual {
         position: relative;
         // Flat design - no perspective
 
@@ -302,8 +302,23 @@
             }
 
             .multi-cursor {
+                position: absolute;
+                width: 50px;
+                height: 50px;
                 z-index: 20;
                 opacity: 0.9;
+                pointer-events: none;
+                overflow: visible;
+                top: 0;
+                left: 0;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                    border-radius: 0; // Remove rounded corners
+                    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+                }
             }
         }
 
@@ -398,17 +413,16 @@
                             width: 6px;
                             height: 6px;
                             border-radius: 50%;
-                            // Glow effect for dots
                             box-shadow: 0 0 8px currentColor;
                         }
 
                         strong {
-                            color: #e2e8f0; // Name
+                            color: #e2e8f0;
                             font-weight: 600;
                         }
 
                         .target {
-                            color: #f8fafc; // Object
+                            color: #f8fafc;
                             font-weight: 600;
                         }
                     }
@@ -431,7 +445,6 @@
         transform: translate(-50%, -50%);
         width: 80%;
         height: 80%;
-        // Teal ambient glow
         background: radial-gradient(circle, rgba(0, 179, 159, 0.15) 0%, transparent 70%);
         filter: blur(100px);
         z-index: -1;
